@@ -1,0 +1,17 @@
+version: '3.0'
+services:
+  rasa:
+    image: rasa/rasa:2.0.2
+    ports:
+      - 5005:5005
+    volumes:
+      - ./:/app
+    command:
+      - run
+  action-server:
+    image: rasa/rasa-sdk:2.2.0
+    volumes:
+      - ./actions:/app/actions
+    ports:
+      - 5055:5055
+

@@ -1,0 +1,38 @@
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- greet
+- goodbye
+- affirm
+- deny
+- restaurant_search
+- telling_cuisine
+- telling_location
+- telling_location_cuisine
+entities:
+- cuisine
+- location
+slots:
+  cuisine:
+    type: text
+    influence_conversation: true
+  location:
+    type: text
+    influence_conversation: true
+responses:
+  utter_assist:
+  - text: Great ! I can help you to find restaurants based your preferred location
+      and cuisine.
+  utter_ask_location_cuisine:
+  - text: Please share your location and cuisine you would like to have.
+  utter_ask_location:
+  - text: Can you please help me with your location?
+  utter_ask_cuisine:
+  - text: What cuisine you would like to binge :P.
+  utter_goodbye:
+  - text: Bye. Have a great time.
+  - text: Bye Bye. See you soon.
+actions:
+- action_show_restaurants
+- action_ask_location_again

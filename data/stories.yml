@@ -1,0 +1,86 @@
+version: "2.0"
+stories:
+- story: restaurantSearch_tellinglocation_tellingCuisine
+  steps:
+  - intent: restaurant_search
+  - action: utter_ask_location
+  - intent: telling_location
+    entities:
+    - location: Hyderabad
+  - slot_was_set:
+    - location: Hyderabad
+  - action: utter_ask_cuisine
+  - intent: telling_cuisine
+    entities:
+    - cuisine: chinese
+  - slot_was_set:
+    - cuisine: chinese
+  - action: action_show_restaurants
+  - intent: goodbye
+  - action: utter_goodbye
+- story: tellingLocationCuisine
+  steps:
+  - intent: telling_location_cuisine
+    entities:
+    - location: Hyderabad
+    - cuisine: chinese
+  - slot_was_set:
+    - location: Hyderabad
+  - slot_was_set:
+    - cuisine: chinese
+  - action: action_show_restaurants
+  - intent: goodbye
+  - action: utter_goodbye
+- story: telling cuisine then location
+  steps:
+  - intent: telling_cuisine
+    entities:
+    - cuisine: chinese
+  - slot_was_set:
+    - cuisine: chinese
+  - action: utter_ask_location
+  - intent: telling_location
+    entities:
+    - location: Hyderabad
+  - slot_was_set:
+    - location: Hyderabad
+  - action: action_show_restaurants
+  - intent: goodbye
+  - action: utter_goodbye
+- story: telling cuisine then location
+  steps:
+  - intent: telling_location
+    entities:
+    - location: Hyderabad
+  - slot_was_set:
+    - location: Hyderabad
+  - action: utter_ask_cuisine
+  - intent: telling_cuisine
+    entities:
+    - cuisine: chinese
+  - slot_was_set:
+    - cuisine: chinese
+  - action: action_show_restaurants
+  - intent: goodbye
+  - action: utter_goodbye
+
+
+- story: empty location handled
+  steps:
+  - intent: restaurant_search
+  - action: utter_ask_location
+  - intent: telling_location
+  - action: action_ask_location_again
+  - action: utter_ask_location
+  - intent: telling_location
+    entities:
+    - location: hyderabad
+  - slot_was_set:
+    - location: hyderabad
+  - action: utter_ask_cuisine
+  - intent: telling_cuisine
+    entities:
+    - cuisine: chinese
+  - slot_was_set:
+    - cuisine: chinese
+  - action: action_show_restaurants
